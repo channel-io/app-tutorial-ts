@@ -21,7 +21,7 @@ async function functionHandler(body: any) {
 
     switch (method) {
         case 'tutorial':
-            return tutorial(WAM_NAME, callerId);
+            return tutorial(WAM_NAME, callerId, body.params);
         case 'sendAsBot':
             await sendAsBot(
                 channelId,
@@ -40,7 +40,7 @@ async function server() {
         app.use(express.json());
         app.use(`/resource/wam/${WAM_NAME}`, express.static(path.join(__dirname, '../../wam/dist')));
 
-        app.put('/function', (req: Request, res: Response) => {
+        app.put('/functions', (req: Request, res: Response) => {
             if (typeof req.headers['x-signature'] !== 'string' || verification(req.headers['x-signature'], JSON.stringify(req.body)) === false) {
                 res.status(401).send('Unauthorized');
             }
@@ -48,7 +48,7 @@ async function server() {
                 res.send(result);
             });
         });
-        
+
         app.listen(process.env.PORT, () => {
             console.log(`Server is running at http://localhost:${process.env.PORT}`);
         });
