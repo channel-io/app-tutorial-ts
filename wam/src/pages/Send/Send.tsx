@@ -14,6 +14,7 @@ import {
   callNativeFunction,
   getWamData,
   setSize,
+  close,
 } from '../../utils/wam'
 import * as Styled from './Send.styled'
 
