@@ -27,6 +27,7 @@ design guidance:
 - SDK-managed app/channel token caching and refresh
 - HMAC request verification with the SDK signature guard
 - a React WAM using `@channel.io/app-sdk-wam` hooks
+- normalization of nullable optional command fields currently emitted by AppStore
 
 Run the `/tutorial` desk command in a group chat to open a WAM. The WAM can send a team-chat message
 either through the app bot (server-side app function) or as the current manager (WAM native
@@ -47,6 +48,8 @@ Managed builders and this tutorial use the same public runtime contract:
 - decorated, schema-backed functions
 - `PUT /functions/:version` (`/functions/v1` for the command extension)
 - extension discovery and registration through the SDK/AppStore
+- a narrow ingress compatibility mapping from bare `PUT /functions` calls to `v1`, matching the
+  managed runtime gateway used when the caller does not carry a system version
 
 A managed builder may select the SDK version and own deployment, endpoint sync, and post-deploy
 extension registration. This standalone tutorial pins `0.17.0` for reproducible builds and enables
@@ -86,6 +89,10 @@ before starting the auto-registering server:
 Do not append `/v1` or `/tutorial`. If credentials, permissions, or endpoints change after the
 server starts, restart the server so auto-registration runs again.
 
+The SDK route itself remains versioned. The tutorial also accepts bare `PUT /functions` and maps it
+to `/functions/v1` because current command execution can call the configured Function Endpoint
+without a system-version suffix. Managed runtimes provide the same mapping at their ingress.
+
 ## Install and build
 
 ```sh
@@ -116,6 +123,7 @@ a permission-failure case. Do not set `SKIP_SIGNATURE_VERIFICATION=true` outside
 ```text
 server/
   src/app.module.ts          SDK module, auto-registration, signature guard
+  src/function-endpoint.ts   bare Function Endpoint to v1 ingress mapping
   src/tutorial.functions.ts command metadata and typed app functions
   src/target-token.ts        short-lived signed group target for the bot path
 wam/

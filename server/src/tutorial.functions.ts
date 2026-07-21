@@ -21,21 +21,10 @@ import {
   createTutorialTargetToken,
   readTutorialTargetToken,
 } from "./target-token.js";
+import { CommandActionInputSchema } from "./command-input.js";
 
 const tutorialMessage = "This is a test message sent by a manager.";
 const botMessage = "This is a test message sent by a bot.";
-
-const CommandActionInputSchema = z.object({
-  chat: z.object({ type: z.string(), id: z.string() }).optional(),
-  trigger: z
-    .object({
-      type: z.string(),
-      attributes: z.record(z.string()).default({}),
-    })
-    .optional(),
-  input: z.record(z.unknown()).optional(),
-  language: z.string().optional(),
-});
 
 const SendAsBotInputSchema = z.object({
   targetToken: z.string().min(1),

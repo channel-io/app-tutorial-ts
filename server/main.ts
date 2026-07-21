@@ -5,12 +5,23 @@ import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import { AppModule } from "./src/app.module.js";
+import { rewriteAppStoreFunctionUrl } from "./src/function-endpoint.js";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     rawBody: true,
   });
   app.enableShutdownHooks();
+  app.use(
+    (
+      request: { method: string; url: string },
+      _response: unknown,
+      next: () => void,
+    ) => {
+      request.url = rewriteAppStoreFunctionUrl(request.method, request.url);
+      next();
+    },
+  );
 
   const wamDist = resolve(process.cwd(), "../wam/dist");
   if (existsSync(wamDist)) {
