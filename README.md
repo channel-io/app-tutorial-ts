@@ -1,23 +1,28 @@
 # Channel App tutorial — TypeScript
 
+[English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md)
+
 A minimal Channel App Store app built with the official
-[Channel App SDK](https://github.com/channel-io/cht-app-sdk). It demonstrates the current SDK path
+[Channel App SDK](https://github.com/channel-io/app-sdk). It demonstrates the current SDK path
 instead of implementing token exchange, extension registration, signature verification, and WAM
 bindings by hand.
 
 Use this repository for a runnable end-to-end app. Use the SDK repository for the API contract and
 design guidance:
 
-- [English app-development guide](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/en/app-development.md)
-- [English concepts: Function, Extension, WAM, and authentication](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/en/concepts.md)
-- [한국어 앱 개발 전체 가이드](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/ko/app-development.md)
-- [한국어 핵심 개념](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/ko/concepts.md)
-- [日本語アプリ開発完全ガイド](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/ja/app-development.md)
-- [日本語の基本概念](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/ja/concepts.md)
-- [Authentication and tokens](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/AUTH-AND-TOKENS.md)
-- [TypeScript architecture](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/ARCHITECTURE.md)
-- [Command extension](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/extensions/command.md)
-- [WAM SDK](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/WAM.md)
+- [English app-development guide](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/app-development.md)
+- [English concepts: Function, Extension, WAM, and authentication](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/concepts.md)
+- [English Extension guide](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/extensions.md)
+- [한국어 앱 개발 전체 가이드](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/app-development.md)
+- [한국어 핵심 개념](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/concepts.md)
+- [한국어 Extension 전체 가이드](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/extensions.md)
+- [日本語アプリ開発完全ガイド](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ja/app-development.md)
+- [日本語の基本概念](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ja/concepts.md)
+- [日本語 Extension 完全ガイド](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ja/extensions.md)
+- [Authentication and tokens](https://github.com/channel-io/app-sdk/blob/main/docs/reference/typescript/AUTH-AND-TOKENS.md)
+- [TypeScript architecture](https://github.com/channel-io/app-sdk/blob/main/docs/reference/typescript/ARCHITECTURE.md)
+- [Command extension](https://github.com/channel-io/app-sdk/blob/main/docs/reference/typescript/extensions/command.md)
+- [WAM SDK](https://github.com/channel-io/app-sdk/blob/main/docs/reference/typescript/WAM.md)
 
 ## What this app demonstrates
 
@@ -42,20 +47,19 @@ Concepts in this repository map to concrete code as follows:
 - **WAM**: the React UI is served at `/resource/wam/tutorial`; `useCallFunction` calls the app server and `useNativeFunction` acts as the current manager.
 - **Authentication**: `SignatureGuard` verifies inbound requests, `TokenManager` caches the channel token used by the bot path, the server signs the allowed group-chat target before giving it to the WAM, and the Channel host owns manager authorization.
 
-## Runtime contract alignment
+## SDK contract alignment
 
-Managed builders and this tutorial use the same public runtime contract:
+This tutorial follows the public SDK runtime contract:
 
 - NestJS with `ChannelAppModule`
 - decorated, schema-backed functions
 - `PUT /functions/:version` (`/functions/v1` for the command extension)
 - extension discovery and registration through the SDK/AppStore
-- a narrow ingress compatibility mapping from bare `PUT /functions` calls to `v1`, matching the
-  managed runtime gateway used when the caller does not carry a system version
+- a narrow ingress compatibility mapping from bare `PUT /functions` calls to the same verified
+  `v1` handler when the caller does not carry a system version
 
-A managed builder may select the SDK version and own deployment, endpoint sync, and post-deploy
-extension registration. This standalone tutorial pins `0.17.2` for reproducible builds and enables
-SDK auto-registration in the app process. Its WAM uses only public SDK hooks and Bezier APIs.
+This tutorial pins `0.17.2` for reproducible builds and enables SDK auto-registration in the app
+process. Its WAM uses only public SDK hooks and Bezier APIs.
 
 ## Prerequisites
 
@@ -64,7 +68,7 @@ SDK auto-registration in the app process. Its WAM uses only public SDK hooks and
 - a private Channel App with an App ID, App Secret, and Signing Key
 
 If you do not have an app yet, follow the SDK's
-[private-app preparation sequence](https://github.com/channel-io/cht-app-sdk/blob/main/docs/guides/en/app-development.md#prepare-a-private-app-before-coding): create a development app, keep credentials server-side, enable the minimum permissions below, prepare endpoint roots, and install it in a test channel.
+[private-app preparation sequence](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/app-development.md#prepare-a-private-app-before-coding): create a development app, keep credentials server-side, enable the minimum permissions below, prepare endpoint roots, and install it in a test channel.
 
 Enable these permissions in the app's **Authentication and permissions** settings:
 
@@ -92,7 +96,7 @@ server starts, restart the server so auto-registration runs again.
 
 The SDK route itself remains versioned. The tutorial also accepts bare `PUT /functions` and maps it
 to `/functions/v1` because current command execution can call the configured Function Endpoint
-without a system-version suffix. Managed runtimes provide the same mapping at their ingress.
+without a system-version suffix. Both paths reuse the same SDK handler and signature verification.
 
 ## Install and build
 
