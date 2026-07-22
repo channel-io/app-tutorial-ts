@@ -1,0 +1,22 @@
+{
+  "name": "channel-app-tutorial-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm --filter @tutorial/shared build && pnpm --filter @tutorial/server test",
+    "typecheck": "pnpm --filter @tutorial/shared build && pnpm -r typecheck",
+    "lint": "pnpm --filter @tutorial/wam lint",
+    "format:check": "prettier --check . --ignore-path .gitignore --ignore-path .prettierignore",
+    "dev:server": "pnpm --filter @tutorial/shared build && pnpm --filter @tutorial/server dev",
+    "dev:wam": "pnpm --filter @tutorial/shared build && pnpm --filter @tutorial/wam dev",
+    "start": "pnpm --filter @tutorial/server start"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

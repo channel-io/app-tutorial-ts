@@ -1,41 +1,42 @@
 # WAM
 
-This frontend uses [`@channel.io/app-sdk-wam`](https://github.com/channel-io/cht-app-sdk/tree/main/ts/packages/wam) for the WAM bridge and [`@channel.io/app-sdk-wam-ui`](https://github.com/channel-io/cht-app-sdk/tree/main/ts/packages/wam-ui) for Channel-consistent UI patterns. Wrap the app with `WamProvider` and `WamThemeProvider`, then use SDK hooks and components for WAM data, app/native calls, sizing, closing, theming, and content-height synchronization.
+This React frontend uses
+[`@channel.io/app-sdk-wam`](https://github.com/channel-io/cht-app-sdk/tree/main/ts/packages/wam)
+for the WAM bridge and
+[`@channel.io/app-sdk-wam-ui`](https://github.com/channel-io/cht-app-sdk/tree/main/ts/packages/wam-ui)
+for WAM-specific theming, navigation, states, and content-height synchronization. Import
+general-purpose UI components directly from `@channel.io/bezier-react/beta`.
 
-The example pins Bezier React `4.0.0-next.13` and Bezier Icons `0.60.0`. Bezier React 4 is still a prerelease, so keep the selected version explicit and check the [SDK WAM UI guide](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/WAM-UI.md) before upgrading it.
+The server and WAM both depend on `@tutorial/shared`. Its Zod schemas and inferred types keep WAM
+data, app-function inputs, native-function inputs, WAM names, and function names aligned. Secrets,
+tokens, and server-only runtime state do not belong in the shared package.
 
-## Getting Started
+The example pins Bezier React `4.0.0-next.13` and Bezier Icons `0.60.0`. Bezier React 4 is still a
+prerelease, so keep the selected version explicit and check the
+[SDK WAM UI guide](https://github.com/channel-io/cht-app-sdk/blob/main/docs/reference/typescript/WAM-UI.md)
+before upgrading it.
 
-### Install Node and Yarn
+## Setup
 
-Install [`nvm`](https://github.com/nvm-sh/nvm) first, then install node via:
-
-```sh
-$ nvm install
-$ nvm use
-```
-
-Install Yarn via:
-
-```sh
-$ corepack enable
-$ corepack prepare yarn@stable --activate
-```
-
-## Development
-
-Run dev server via:
+Install Node.js 20.11 or newer, then enable pnpm through Corepack:
 
 ```sh
-$ yarn dev
+corepack enable
+corepack prepare pnpm@9.15.4 --activate
+pnpm install --frozen-lockfile
 ```
 
-## Build
-
-Build WAM via:
+Run the WAM development server from the repository root:
 
 ```sh
-$ yarn build
+pnpm dev:wam
 ```
 
-Build results will be in `dist/`. The tutorial server exposes that directory below `/resource/wam/tutorial`.
+Build all workspaces from the repository root:
+
+```sh
+pnpm build
+```
+
+The WAM output is written to `wam/dist/`. The tutorial server exposes that directory below
+`/resource/wam/tutorial`.
