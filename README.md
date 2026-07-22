@@ -21,12 +21,14 @@ design guidance:
 
 ## What this app demonstrates
 
-- `@channel.io/app-sdk-server` and `@channel.io/app-sdk-wam` `0.17.0`
+- `@channel.io/app-sdk-server` and `@channel.io/app-sdk-wam` `0.17.2`
 - a `command` extension discovered and registered automatically
 - typed app functions with Zod input/output schemas
 - SDK-managed app/channel token caching and refresh
 - HMAC request verification with the SDK signature guard
 - a React WAM using `@channel.io/app-sdk-wam` hooks
+- a shared Zod contract package used by both the server and React WAM
+- redesigned Bezier components from `@channel.io/bezier-react/beta`
 - normalization of nullable optional command fields currently emitted by AppStore
 
 Run the `/tutorial` desk command in a group chat to open a WAM. The WAM can send a team-chat message
@@ -52,14 +54,13 @@ Managed builders and this tutorial use the same public runtime contract:
   managed runtime gateway used when the caller does not carry a system version
 
 A managed builder may select the SDK version and own deployment, endpoint sync, and post-deploy
-extension registration. This standalone tutorial pins `0.17.0` for reproducible builds and enables
-SDK auto-registration in the app process. Its WAM uses only the public SDK hooks.
+extension registration. This standalone tutorial pins `0.17.2` for reproducible builds and enables
+SDK auto-registration in the app process. Its WAM uses only public SDK hooks and Bezier APIs.
 
 ## Prerequisites
 
 - Node.js 20.11 or newer
-- npm
-- Yarn 4 through Corepack
+- pnpm 9.15.4 through Corepack
 - a private Channel App with an App ID, App Secret, and Signing Key
 
 If you do not have an app yet, follow the SDK's
@@ -96,14 +97,16 @@ without a system-version suffix. Managed runtimes provide the same mapping at th
 ## Install and build
 
 ```sh
-(cd wam && corepack yarn install --immutable && corepack yarn build)
-(cd server && npm ci && npm test && npm run build)
+corepack pnpm install --frozen-lockfile
+corepack pnpm build
+corepack pnpm test
+corepack pnpm typecheck
 ```
 
 ## Run
 
 ```sh
-(cd server && npm start)
+corepack pnpm start
 ```
 
 The defaults expose:
@@ -126,7 +129,10 @@ server/
   src/function-endpoint.ts   bare Function Endpoint to v1 ingress mapping
   src/tutorial.functions.ts command metadata and typed app functions
   src/target-token.ts        short-lived signed group target for the bot path
+packages/shared/
+  src/index.ts               WAM data and app/native function wire contracts
 wam/
+  src/hooks/                 validates host data with the shared Zod contract
   src/pages/Send/Send.tsx    WAM SDK hooks for app/native calls
 ```
 

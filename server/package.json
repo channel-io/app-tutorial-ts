@@ -1,5 +1,5 @@
 {
-  "name": "tutorial-app",
+  "name": "@tutorial/server",
   "version": "1.0.0",
   "description": "Channel App Store tutorial server using the official TypeScript SDK",
   "type": "module",
@@ -14,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@channel.io/app-sdk-server": "0.17.0",
+    "@channel.io/app-sdk-server": "0.17.2",
+    "@tutorial/shared": "workspace:*",
     "@nestjs/common": "11.1.28",
     "@nestjs/core": "11.1.28",
     "@nestjs/platform-express": "11.1.28",

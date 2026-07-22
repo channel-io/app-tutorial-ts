@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+**/dist/
+**/node_modules/
+server/src/config.ts
+server/src/function-endpoint.ts
+server/src/function-endpoint.test.ts

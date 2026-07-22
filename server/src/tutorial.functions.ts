@@ -1,6 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { z } from "zod";
 import {
+  CommandActionInputSchema,
+  SendAsBotInputSchema,
+  TUTORIAL_FUNCTIONS,
+  TUTORIAL_WAM_NAME,
+  type CommandActionInput,
+  type SendAsBotInput,
+  type TutorialWamArgs,
+} from "@tutorial/shared";
+import {
   CommandResultSchema,
   Ctx,
   Description,
@@ -21,16 +30,9 @@ import {
   createTutorialTargetToken,
   readTutorialTargetToken,
 } from "./target-token.js";
-import { CommandActionInputSchema } from "./command-input.js";
 
 const tutorialMessage = "This is a test message sent by a manager.";
 const botMessage = "This is a test message sent by a bot.";
-
-const SendAsBotInputSchema = z.object({
-  targetToken: z.string().min(1),
-  rootMessageId: z.string().optional(),
-  broadcast: z.boolean().default(false),
-});
 
 @Extension({ name: "command", systemVersion: "v1" })
 export class CommandExtension {
@@ -45,7 +47,7 @@ export class CommandExtension {
           name: "tutorial",
           scope: "desk",
           description: "Open the Channel App SDK tutorial WAM",
-          actionFunctionName: "tutorial.open",
+          actionFunctionName: TUTORIAL_FUNCTIONS.open,
           alfMode: "disable",
           enabledByDefault: true,
         },
@@ -61,13 +63,13 @@ export class TutorialFunctions {
     private readonly nativeClient: NativeFunctionClient,
   ) {}
 
-  @Func("tutorial.open")
+  @Func(TUTORIAL_FUNCTIONS.open)
   @Description("Open the tutorial WAM")
   @InputSchema(CommandActionInputSchema)
   @OutputSchema(CommandResultSchema)
   open(
     @Ctx() ctx: Context,
-    @Input() params: z.infer<typeof CommandActionInputSchema>,
+    @Input() params: CommandActionInput,
   ): z.infer<typeof CommandResultSchema> {
     const chat = params.chat;
     const managerId = ctx.caller.id ?? "";
@@ -88,32 +90,34 @@ export class TutorialFunctions {
           )
         : undefined;
 
+    const wamArgs = {
+      chatId: chat?.id ?? "",
+      chatType: chat?.type ?? "",
+      chatTitle: triggerAttributes.chatTitle ?? "",
+      rootMessageId: triggerAttributes.rootMessageId,
+      broadcast: triggerAttributes.broadcast === "true",
+      managerId,
+      message: tutorialMessage,
+      targetToken,
+    } satisfies TutorialWamArgs;
+
     return {
       type: "wam",
       attributes: {
         appId,
-        name: "tutorial",
-        wamArgs: {
-          chatId: chat?.id ?? "",
-          chatType: chat?.type ?? "",
-          chatTitle: triggerAttributes.chatTitle ?? "",
-          rootMessageId: triggerAttributes.rootMessageId,
-          broadcast: triggerAttributes.broadcast === "true",
-          managerId,
-          message: tutorialMessage,
-          targetToken,
-        },
+        name: TUTORIAL_WAM_NAME,
+        wamArgs,
       },
     };
   }
 
-  @Func("tutorial.sendAsBot")
+  @Func(TUTORIAL_FUNCTIONS.sendAsBot)
   @Description("Send a team chat message with the app bot profile")
   @InputSchema(SendAsBotInputSchema)
   @OutputSchema(z.object({}))
   async sendAsBot(
     @Ctx() ctx: Context,
-    @Input() input: z.infer<typeof SendAsBotInputSchema>,
+    @Input() input: SendAsBotInput,
   ): Promise<Record<string, never>> {
     const target = readTutorialTargetToken(input.targetToken, appSecret);
     if (

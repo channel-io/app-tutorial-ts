@@ -28,7 +28,7 @@ async function bootstrap() {
     app.useStaticAssets(wamDist, { prefix: "/resource/wam/tutorial" });
   } else {
     new Logger("Bootstrap").warn(
-      `WAM build not found at ${wamDist}. Run yarn build in wam/.`,
+      `WAM build not found at ${wamDist}. Run pnpm build from the repository root.`,
     );
   }
 

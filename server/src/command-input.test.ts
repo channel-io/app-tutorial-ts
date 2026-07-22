@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { CommandActionInputSchema } from "./command-input.js";
+import { CommandActionInputSchema } from "@tutorial/shared";
 
 test("normalizes nullable command fields sent by AppStore", () => {
   const parsed = CommandActionInputSchema.parse({
