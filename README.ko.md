@@ -8,6 +8,7 @@
 
 이 저장소는 바로 실행할 수 있는 예제로 사용하고 계약과 설계 원칙은 SDK 문서를 확인하세요.
 
+- [첫 앱 만들기 Quickstart](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/quickstart.md)
 - [앱 개발 전체 가이드](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/app-development.md)
 - [Function, Extension, WAM, 인증 핵심 개념](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/concepts.md)
 - [Extension 전체 가이드](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/extensions.md)
@@ -59,14 +60,22 @@ message를 보냅니다. 지원하지 않는 chat type에서는 조용히 닫지
 - App ID, App Secret, Signing Key가 있는 개발용 private Channel App
 
 앱이 아직 없다면 SDK의
-[private app 준비 순서](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/app-development.md#구현-전에-private-app-준비하기)에
-따라 앱 생성, server-side credential 보관, 최소 permission, endpoint root, test channel 설치를
-먼저 완료하세요.
+[첫 앱 만들기 Quickstart](https://github.com/channel-io/app-sdk/blob/main/docs/guides/ko/quickstart.md)부터
+따라 하세요. Private app 생성, server-side credential, 최소 permission, endpoint root, test channel
+설치를 한 흐름으로 설명합니다.
 
 **인증 및 권한** 설정에서 다음 permission을 활성화합니다.
 
 - Channel: `writeGroupMessage`
 - Manager: `writeGroupMessageAsManager`
+
+## Clone
+
+```sh
+git clone https://github.com/channel-io/app-tutorial-ts.git
+cd app-tutorial-ts
+corepack enable
+```
 
 ## 환경 변수
 
@@ -130,5 +139,6 @@ wam/
   src/pages/Send/Send.tsx    app/native call용 WAM SDK hook
 ```
 
-이 튜토리얼과 오래된 웹 문서가 다르면 공개 SDK export, SDK reference, SDK guide, 이 실행 예제
-순서로 확인하세요. SDK 문서도 완성된 server/WAM 예제가 필요할 때 이 튜토리얼을 연결합니다.
+현재 계약은 SDK guide와 reference에서 확인하고, 완성된 server/WAM 구현은 이 저장소에서
+확인하세요. SDK Quickstart도 실행 가능한 TypeScript 코드가 필요한 단계에서 이 튜토리얼을
+연결합니다.

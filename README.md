@@ -10,6 +10,7 @@ bindings by hand.
 Use this repository for a runnable end-to-end app. Use the SDK repository for the API contract and
 design guidance:
 
+- [English first-app quickstart](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/quickstart.md)
 - [English app-development guide](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/app-development.md)
 - [English concepts: Function, Extension, WAM, and authentication](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/concepts.md)
 - [English Extension guide](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/extensions.md)
@@ -67,13 +68,21 @@ process. Its WAM uses only public SDK hooks and Bezier APIs.
 - pnpm 9.15.4 through Corepack
 - a private Channel App with an App ID, App Secret, and Signing Key
 
-If you do not have an app yet, follow the SDK's
-[private-app preparation sequence](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/app-development.md#prepare-a-private-app-before-coding): create a development app, keep credentials server-side, enable the minimum permissions below, prepare endpoint roots, and install it in a test channel.
+If you do not have an app yet, start with the SDK's
+[first-app quickstart](https://github.com/channel-io/app-sdk/blob/main/docs/guides/en/quickstart.md). It covers private-app creation, server-side credentials, minimum permissions, endpoint roots, and test-channel installation.
 
 Enable these permissions in the app's **Authentication and permissions** settings:
 
 - Channel: `writeGroupMessage`
 - Manager: `writeGroupMessageAsManager`
+
+## Clone
+
+```sh
+git clone https://github.com/channel-io/app-tutorial-ts.git
+cd app-tutorial-ts
+corepack enable
+```
 
 ## Configure
 
@@ -140,6 +149,5 @@ wam/
   src/pages/Send/Send.tsx    WAM SDK hooks for app/native calls
 ```
 
-When this tutorial and older web documentation disagree, follow the SDK's public exports, SDK
-reference, SDK guides, and this runnable example in that order. The SDK guide links back to this
-tutorial when a complete server-and-WAM example is more useful than an isolated snippet.
+Use the SDK guides and references for the current contract, and use this repository for its complete
+server-and-WAM implementation. The SDK quickstart links here when runnable TypeScript code is useful.
