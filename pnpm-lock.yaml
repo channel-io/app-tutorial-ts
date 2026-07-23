@@ -69,13 +69,13 @@ importers:
         version: 0.17.2(react@18.3.1)
       '@channel.io/app-sdk-wam-ui':
         specifier: 0.4.0
-        version: 0.4.0(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@channel.io/bezier-react@4.0.0-next.13(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(styled-components@6.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 0.4.0(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@channel.io/bezier-react@4.0.0-next.14(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(styled-components@6.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@channel.io/bezier-icons':
         specifier: 0.60.0
         version: 0.60.0(react@18.3.1)
       '@channel.io/bezier-react':
-        specifier: 4.0.0-next.13
-        version: 4.0.0-next.13(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 4.0.0-next.14
+        version: 4.0.0-next.14(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tutorial/shared':
         specifier: workspace:*
         version: link:../packages/shared
@@ -262,8 +262,8 @@ packages:
       react:
         optional: true
 
-  '@channel.io/bezier-react@4.0.0-next.13':
-    resolution: {integrity: sha512-HqLTGCpoaJwiAddbEweWUaVDaAi7fltxfwxgfEUubkCKC+s9lxstqpCODVAEAw9Tg8KQD852/3vC4zo4AN/91g==}
+  '@channel.io/bezier-react@4.0.0-next.14':
+    resolution: {integrity: sha512-a2jb5vwkFRhIk/+xOn5nO2vvdvc5V2QeEYJk7yOz0SeJh71/lk8e/wQQ0dmLjyZMQlSMrPsEztLO0so5Eyb/yQ==}
     peerDependencies:
       '@channel.io/bezier-icons': '>=0.2.0'
       react: '>=17'
@@ -2622,10 +2622,10 @@ snapshots:
       zod: 3.25.76
       zod-to-json-schema: 3.25.2(zod@3.25.76)
 
-  '@channel.io/app-sdk-wam-ui@0.4.0(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@channel.io/bezier-react@4.0.0-next.13(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(styled-components@6.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@channel.io/app-sdk-wam-ui@0.4.0(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@channel.io/bezier-react@4.0.0-next.14(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(styled-components@6.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@channel.io/bezier-icons': 0.60.0(react@18.3.1)
-      '@channel.io/bezier-react': 4.0.0-next.13(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@channel.io/bezier-react': 4.0.0-next.14(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       styled-components: 6.4.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
@@ -2637,7 +2637,7 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@channel.io/bezier-react@4.0.0-next.13(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@channel.io/bezier-react@4.0.0-next.14(@channel.io/bezier-icons@0.60.0(react@18.3.1))(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@channel.io/bezier-tokens': 1.0.0-next.5
       '@radix-ui/react-checkbox': 1.3.8(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
