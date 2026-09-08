@@ -2,3 +2,13 @@ packages:
   - "server"
   - "wam"
   - "packages/*"
+
+# 승인되지 않은 빌드 스크립트가 있으면 install을 실패시킨다(조용히 건너뛰지 않는다).
+strictDepBuilds: true
+
+# install/build 스크립트 실행이 허용된 의존성.
+# as-is(pnpm 9.15.4)는 허용목록이 없었고 pnpm 9는 목록이 없으면 스크립트를 전부 실행하므로,
+# 아래 둘은 이미 실행되고 있던 것이다 — as-is 보존이 곧 true다.
+allowBuilds:
+  esbuild: true
+  protobufjs: true
