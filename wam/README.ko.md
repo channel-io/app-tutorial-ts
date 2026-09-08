@@ -19,11 +19,11 @@ runtime state는 shared package에 넣지 않습니다.
 
 ## 설정
 
-Node.js 20.11 이상을 설치하고 Corepack으로 pnpm을 활성화합니다.
+Node.js 24 이상을 설치하고 Corepack으로 pnpm을 활성화합니다.
 
 ```sh
 corepack enable
-corepack prepare pnpm@9.15.4 --activate
+corepack prepare pnpm@11.24.0 --activate
 pnpm install --frozen-lockfile
 ```
 

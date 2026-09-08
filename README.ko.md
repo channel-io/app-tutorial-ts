@@ -55,8 +55,8 @@ message를 보냅니다. 지원하지 않는 chat type에서는 조용히 닫지
 
 ## 준비 사항
 
-- Node.js 20.11 이상
-- Corepack을 통한 pnpm 9.15.4
+- Node.js 24 이상
+- Corepack을 통한 pnpm 11.24.0
 - App ID, App Secret, Signing Key가 있는 개발용 private Channel App
 
 앱이 아직 없다면 SDK의
