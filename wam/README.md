@@ -20,11 +20,11 @@ before upgrading it.
 
 ## Setup
 
-Install Node.js 20.11 or newer, then enable pnpm through Corepack:
+Install Node.js 24 or newer, then enable pnpm through Corepack:
 
 ```sh
 corepack enable
-corepack prepare pnpm@9.15.4 --activate
+corepack prepare pnpm@11.24.0 --activate
 pnpm install --frozen-lockfile
 ```
 
