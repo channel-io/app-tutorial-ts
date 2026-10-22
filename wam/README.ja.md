@@ -19,7 +19,7 @@ Example は Bezier React `4.0.0-next.13` と Bezier Icons `0.60.0` を固定し�
 
 ## Setup
 
-Node.js 24 以上を install し、Corepack で pnpm を有効にします。
+Node.js 24.x（24.22.1 以上）または 26.x（26.12.1 以上）を install し、Corepack で pnpm を有効にします。
 
 ```sh
 corepack enable

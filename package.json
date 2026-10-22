@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.24.0",
   "engines": {
-    "node": ">=24.0.0",
+    "node": ">=24.22.1 <25 || >=26.12.1 <27",
     "pnpm": ">=11.22.0"
   },
   "scripts": {
@@ -19,5 +19,12 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.22.1 <25 || >=26.12.1 <27",
+      "onFail": "error"
+    }
   }
 }

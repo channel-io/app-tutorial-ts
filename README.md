@@ -64,7 +64,7 @@ process. Its WAM uses only public SDK hooks and Bezier APIs.
 
 ## Prerequisites
 
-- Node.js 24 or newer
+- Node.js 24.x (24.22.1 or later) or 26.x (26.12.1 or later)
 - pnpm 11.24.0 through Corepack
 - a private Channel App with an App ID, App Secret, and Signing Key
 
