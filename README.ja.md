@@ -55,7 +55,7 @@ Reproducible build のため SDK `0.17.2` を固定し、app process 起動時�
 
 ## 前提条件
 
-- Node.js 24 以上
+- Node.js 24.x（24.22.1 以上）または 26.x（26.12.1 以上）
 - Corepack 経由の pnpm 11.24.0
 - App ID、App Secret、Signing Key を持つ開発用 private Channel App
 

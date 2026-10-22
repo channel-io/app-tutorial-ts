@@ -20,7 +20,7 @@ before upgrading it.
 
 ## Setup
 
-Install Node.js 24 or newer, then enable pnpm through Corepack:
+Install Node.js 24.x (24.22.1 or later) or 26.x (26.12.1 or later), then enable pnpm through Corepack:
 
 ```sh
 corepack enable

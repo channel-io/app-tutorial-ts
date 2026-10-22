@@ -19,7 +19,7 @@ runtime state는 shared package에 넣지 않습니다.
 
 ## 설정
 
-Node.js 24 이상을 설치하고 Corepack으로 pnpm을 활성화합니다.
+Node.js 24.x(24.22.1 이상) 또는 26.x(26.12.1 이상)를 설치하고 Corepack으로 pnpm을 활성화합니다.
 
 ```sh
 corepack enable
